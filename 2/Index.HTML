@@ -1,0 +1,927 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Media Adventure</title>
+    <meta name="description"
+        content="Media Adventure — discover cinematic stories, travel inspiration, and live experiences." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #0b1020;
+            --bg-soft: #121a2d;
+            --panel: rgba(18, 26, 45, 0.72);
+            --panel-strong: #1b2740;
+            --card: rgba(255, 255, 255, 0.06);
+            --line: rgba(255, 255, 255, 0.08);
+            --text: #edf3ff;
+            --muted: #a4b0c8;
+            --primary: #7c93ff;
+            --secondary: #66d9c4;
+            --gold: #f7c873;
+            --shadow: rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Inter", sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(124, 147, 255, 0.18), transparent 25%),
+                radial-gradient(circle at right, rgba(102, 217, 196, 0.12), transparent 20%),
+                var(--bg);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: min(1180px, calc(100% - 32px));
+            margin: 0 auto;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            backdrop-filter: blur(16px);
+            background: rgba(11, 16, 32, 0.6);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .brand-mark {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #07101d;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(124, 147, 255, 0.4);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .nav-links a {
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 999px;
+            padding: 0.9rem 1.5rem;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            background: linear-gradient(135deg, var(--primary), #8a7dff);
+            color: white;
+            box-shadow: 0 18px 28px rgba(124, 147, 255, 0.38);
+            border-color: transparent;
+        }
+
+        .button-secondary {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .hero {
+            padding: 64px 0 42px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 42px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.8rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 38px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--secondary));
+        }
+
+        h1 {
+            font-size: clamp(2.8rem, 4vw, 5rem);
+            line-height: 0.98;
+            letter-spacing: -0.06em;
+            margin: 18px 0 18px;
+        }
+
+        .hero-copy p {
+            max-width: 560px;
+            margin: 0 0 28px;
+            color: var(--muted);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 26px;
+        }
+
+        .rating-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 18px;
+            color: var(--muted);
+        }
+
+        .avatars {
+            display: flex;
+            align-items: center;
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid rgba(11, 16, 32, 0.9);
+            margin-left: -10px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .avatar:first-child {
+            margin-left: 0;
+        }
+
+        .avatar.one {
+            background-image: url("https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80");
+        }
+
+        .avatar.two {
+            background-image: url("https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80");
+        }
+
+        .avatar.three {
+            background-image: url("https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=300&q=80");
+        }
+
+        .highlight {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
+        .feature-card {
+            position: relative;
+            overflow: hidden;
+            display: grid;
+            grid-template-rows: 1fr auto;
+            min-height: 620px;
+            background: linear-gradient(180deg, rgba(17, 27, 45, 0.1), rgba(17, 27, 45, 0.65)),
+                url("https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+        }
+
+        .feature-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(13, 17, 31, 0.1), rgba(13, 17, 31, 0.8));
+        }
+
+        .planet-orbit {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            box-shadow: inset -12px -12px 24px rgba(0, 0, 0, 0.28), 0 0 25px rgba(124, 147, 255, 0.25);
+        }
+
+        .planet.one {
+            width: 90px;
+            height: 90px;
+            background: radial-gradient(circle at 30% 30%, #ffe8a3, #dc9d3a 38%, #8c4c1f 100%);
+            right: 18%;
+            top: 14%;
+        }
+
+        .planet.two {
+            width: 58px;
+            height: 58px;
+            background: radial-gradient(circle at 30% 30%, #dfe8ff, #7c93ff 38%, #3648a5 100%);
+            right: 12%;
+            top: 34%;
+        }
+
+        .rocket-icon {
+            position: absolute;
+            right: 11%;
+            bottom: 16%;
+            width: 120px;
+            height: 180px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04));
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50% 50% 42% 42% / 24% 24% 48% 48%;
+            transform: rotate(18deg);
+            box-shadow: 0 0 30px rgba(124, 147, 255, 0.18);
+        }
+
+        .rocket-icon::before,
+        .rocket-icon::after {
+            content: "";
+            position: absolute;
+        }
+
+        .rocket-icon::before {
+            width: 56px;
+            height: 88px;
+            left: 50%;
+            top: 22px;
+            transform: translateX(-50%);
+            border-radius: 18px 18px 26px 26px;
+            background: linear-gradient(180deg, #f5f7ff 0%, #c9d5ff 25%, #7c93ff 100%);
+            box-shadow: inset 0 0 16px rgba(255, 255, 255, 0.6);
+        }
+
+        .rocket-icon::after {
+            width: 18px;
+            height: 70px;
+            left: 50%;
+            bottom: 10px;
+            transform: translateX(-50%);
+            background: linear-gradient(180deg, #f7c873, #d68d36);
+            clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 1;
+            padding: 26px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .floating-badge,
+        .mini-panel {
+            background: rgba(14, 22, 39, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .floating-badge {
+            align-self: flex-start;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border-radius: 999px;
+            padding: 10px 16px;
+            color: var(--text);
+            font-size: 0.82rem;
+        }
+
+        .floating-badge .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 18px rgba(247, 200, 115, 0.9);
+        }
+
+        .mini-panel {
+            border-radius: 18px;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .mini-panel strong {
+            display: block;
+            font-size: 1.4rem;
+            margin-bottom: 4px;
+        }
+
+        .mini-panel span {
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        .play-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, var(--secondary), #8ef0d5);
+            color: #07101d;
+            font-size: 1.1rem;
+            box-shadow: 0 18px 28px rgba(102, 217, 196, 0.35);
+        }
+
+        .stats-bar {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+            margin-top: -32px;
+            padding: 0 18px 18px;
+        }
+
+        .stat {
+            background: rgba(15, 22, 39, 0.72);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            padding: 20px 22px;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.18);
+        }
+
+        .stat strong {
+            display: block;
+            font-size: clamp(1.3rem, 2vw, 2rem);
+            letter-spacing: -0.04em;
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .section {
+            padding: 72px 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 24px;
+            margin-bottom: 28px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 2.8vw, 3rem);
+            letter-spacing: -0.05em;
+            margin: 8px 0 0;
+        }
+
+        .section-header p {
+            margin: 0;
+            color: var(--muted);
+            max-width: 480px;
+            line-height: 1.8;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .media-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .media-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(124, 147, 255, 0.6);
+        }
+
+        .media-image {
+            height: 260px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .media-body {
+            padding: 20px 20px 22px;
+        }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 7px 10px;
+            border-radius: 999px;
+            background: rgba(124, 147, 255, 0.14);
+            border: 1px solid rgba(124, 147, 255, 0.3);
+            color: #dfe7ff;
+        }
+
+        .media-card h3 {
+            margin: 0 0 10px;
+            font-size: 1.4rem;
+            letter-spacing: -0.04em;
+        }
+
+        .media-card p {
+            margin: 0;
+            line-height: 1.7;
+            color: var(--muted);
+        }
+
+        .journey-wrap {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .journey-panel,
+        .newsletter {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            padding: 28px;
+        }
+
+        .timeline {
+            display: grid;
+            gap: 18px;
+            margin-top: 16px;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 64px 1fr auto;
+            gap: 18px;
+            align-items: center;
+            padding: 16px 16px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .step {
+            width: 52px;
+            height: 52px;
+            display: grid;
+            place-items: center;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(124, 147, 255, 0.2), rgba(102, 217, 196, 0.15));
+            border: 1px solid rgba(124, 147, 255, 0.25);
+            font-weight: 800;
+        }
+
+        .timeline-item h4 {
+            margin: 0 0 4px;
+            font-size: 1.12rem;
+        }
+
+        .timeline-item p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .day-badge {
+            display: inline-flex;
+            justify-self: end;
+            padding: 8px 10px;
+            border-radius: 999px;
+            background: rgba(247, 200, 115, 0.12);
+            border: 1px solid rgba(247, 200, 115, 0.22);
+            color: var(--gold);
+            font-size: 0.76rem;
+        }
+
+        .newsletter {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .newsletter h3 {
+            margin-top: 0;
+            font-size: clamp(1.8rem, 2vw, 2.5rem);
+            letter-spacing: -0.05em;
+        }
+
+        .newsletter p {
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+        }
+
+        input[type="email"] {
+            flex: 1 1 220px;
+            min-width: 0;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text);
+            border-radius: 999px;
+            padding: 1rem 1.2rem;
+            font: inherit;
+        }
+
+        input[type="email"]::placeholder {
+            color: rgba(228, 234, 244, 0.5);
+        }
+
+        .site-footer {
+            padding: 30px 0 56px;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            border-top: 1px solid var(--line);
+            padding-top: 22px;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 920px) {
+
+            .hero-grid,
+            .journey-wrap,
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 18px 0;
+            }
+
+            .nav-links {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .button,
+            .input-row .button {
+                width: 100%;
+            }
+
+            .hero-actions,
+            .nav-actions,
+            .input-row {
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+
+            .stats-bar {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                display: block;
+            }
+
+            .timeline-item {
+                grid-template-columns: 52px 1fr;
+            }
+
+            .day-badge {
+                grid-column: 2;
+                justify-self: start;
+            }
+
+            .footer-inner {
+                display: block;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container nav">
+            <a href="#top" class="brand" aria-label="Media Adventure home">
+                <span class="brand-mark">M</span>
+                <span>Media Adventure</span>
+            </a>
+
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="#discover">Discover</a>
+                <a href="#experiences">Experiences</a>
+                <a href="#stories">Stories</a>
+                <a href="#journal">Journal</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="#journal" class="button button-secondary">Log in</a>
+                <a href="#newsletter" class="button button-primary">Book now</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="top">
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <span class="eyebrow">Curated live experiences</span>
+                    <h1>Turn every story into your next adventure.</h1>
+                    <p>
+                        Explore cinematic escapes through glowing planets, daring rocket launches, and deep-space
+                        stories built for dreamers who chase wonder, imagination, and unforgettable discovery.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#discover" class="button button-primary">Start exploring</a>
+                        <a href="#stories" class="button button-secondary">See gallery</a>
+                    </div>
+
+                    <div class="rating-row" aria-label="Traveler satisfaction and community">
+                        <div class="avatars" aria-hidden="true">
+                            <span class="avatar one"></span>
+                            <span class="avatar two"></span>
+                            <span class="avatar three"></span>
+                        </div>
+                        <strong>4.9/5</strong>
+                        <span>from 12k+ adventurers</span>
+                    </div>
+                </div>
+
+                <div class="highlight" aria-label="Featured media destination">
+                    <div class="feature-card">
+                        <div class="planet-orbit" aria-hidden="true">
+                            <span class="planet one"></span>
+                            <span class="planet two"></span>
+                            <span class="rocket-icon"></span>
+                        </div>
+                        <div class="card-content">
+                            <span class="floating-badge"><span class="dot"></span> Featured expedition</span>
+
+                            <div class="mini-panel">
+                                <div>
+                                    <strong>Orbit X</strong>
+                                    <span>Rocket launch & planet tracking</span>
+                                </div>
+                                <span class="play-btn" aria-label="Play overview">▶</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container stats-bar" aria-label="Key statistics">
+                <div class="stat">
+                    <strong>48+</strong>
+                    <span>curated destinations</span>
+                </div>
+                <div class="stat">
+                    <strong>320h</strong>
+                    <span>of cinematic inspiration</span>
+                </div>
+                <div class="stat">
+                    <strong>96%</strong>
+                    <span>traveler return rate</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="discover">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <span class="eyebrow">Discover now</span>
+                        <h2>Trending escape stories</h2>
+                    </div>
+                    <p>
+                        From orbital routes to planetary frontiers, each story is designed to spark awe and bring
+                        the thrill of interstellar exploration to life through immersive media.
+                    </p>
+                </div>
+
+                <div class="cards-grid">
+                    <article class="media-card">
+                        <div class="media-image"
+                            style="background-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=900&q=80');">
+                        </div>
+                        <div class="media-body">
+                            <div class="meta">
+                                <span class="tag">Orbit</span>
+                                <span>5 days</span>
+                            </div>
+                            <h3>Solar Drift</h3>
+                            <p>Follow a glowing path through nebulae and distant planets as our journey climbs beyond
+                                the stars.</p>
+                        </div>
+                    </article>
+
+                    <article class="media-card">
+                        <div class="media-image"
+                            style="background-image: url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=900&q=80');">
+                        </div>
+                        <div class="media-body">
+                            <div class="meta">
+                                <span class="tag">Planet</span>
+                                <span>7 days</span>
+                            </div>
+                            <h3>Crimson Ring</h3>
+                            <p>Explore vivid alien landscapes and glowing rings where every horizon feels like the edge
+                                of discovery.</p>
+                        </div>
+                    </article>
+
+                    <article class="media-card">
+                        <div class="media-image"
+                            style="background-image: url('https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?auto=format&fit=crop&w=900&q=80');">
+                        </div>
+                        <div class="media-body">
+                            <div class="meta">
+                                <span class="tag">Launch</span>
+                                <span>4 days</span>
+                            </div>
+                            <h3>Rocket Run</h3>
+                            <p>Chase the thrill of lift-off, orbital views, and high-altitude adventure as humanity
+                                presses onward.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="experiences">
+            <div class="container journey-wrap">
+                <div class="journey-panel">
+                    <span class="eyebrow">Your journey</span>
+                    <h2 style="font-size: clamp(2rem, 2.8vw, 3rem); letter-spacing: -0.05em; margin: 10px 0 0;">
+                        Built for story lovers
+                    </h2>
+
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="step">01</div>
+                            <div>
+                                <h4>Choose your orbit</h4>
+                                <p>Pick from moonlit launches, planetary escapes, or cosmic journeys made for bold
+                                    explorers.</p>
+                            </div>
+                            <span class="day-badge">Plan</span>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="step">02</div>
+                            <div>
+                                <h4>Shape your route</h4>
+                                <p>We build each mission around your pace, curiosity, and love for extraordinary
+                                    space-age moments.</p>
+                            </div>
+                            <span class="day-badge">Design</span>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="step">03</div>
+                            <div>
+                                <h4>Live the launch</h4>
+                                <p>Experience immersive moments, stellar views, and unforgettable cosmic adventures from
+                                    start to finish.</p>
+                            </div>
+                            <span class="day-badge">Go</span>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="newsletter" id="newsletter">
+                    <span class="eyebrow">Join the list</span>
+                    <h3>Get your next cosmic story sent to you.</h3>
+                    <p>
+                        Subscribe for early access to new rocket launches, planet discoveries, and members-only space
+                        adventures.
+                    </p>
+
+                    <div class="input-row">
+                        <input type="email" placeholder="Your email address" aria-label="Email address" />
+                        <button class="button button-primary" type="button">Join now</button>
+                    </div>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" id="journal">
+        <div class="container footer-inner">
+            <div>© <span id="year">2026</span> Media Adventure</div>
+            <div class="footer-links">
+                <a href="#top">Home</a>
+                <a href="#discover">Destinations</a>
+                <a href="#experiences">Journeys</a>
+                <a href="#newsletter">Newsletter</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>
