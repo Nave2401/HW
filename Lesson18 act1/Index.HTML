@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safari</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="safariCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#safariCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#safariCarousel" data-slide-to="1"></li>
+            <li data-target="#safariCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active text-center"
+                style="height: 360px; background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80'); background-size: cover; background-position: center; color: white;">
+                <div class="d-flex flex-column justify-content-center align-items-center h-100"
+                    style="font-size: 3rem;">
+                    <div>🌲 Forest</div>
+                    <p class="lead px-3">Forests are large areas covered chiefly with trees and undergrowth.</p>
+                </div>
+            </div>
+            <div class="carousel-item text-center"
+                style="height: 360px; background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80'); background-size: cover; background-position: center; color: white;">
+                <div class="d-flex flex-column justify-content-center align-items-center h-100"
+                    style="font-size: 3rem;">
+                    <div>🌊 Ocean</div>
+                    <p class="lead px-3">Oceans are vast bodies of salt water that cover most of the Earth's surface.
+                    </p>
+                </div>
+            </div>
+            <div class="carousel-item text-center"
+                style="height: 360px; background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80'); background-size: cover; background-position: center; color: white;">
+                <div class="d-flex flex-column justify-content-center align-items-center h-100"
+                    style="font-size: 3rem;">
+                    <div>🏜️ Desert</div>
+                    <p class="lead px-3">Deserts are arid regions with little rainfall and sparse vegetation.</p>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#safariCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#safariCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mt-3">
+        <a class="navbar-brand" href="#">Safari</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse bg-dark" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" style="background-color: #007bff; color: white;">Home <span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" style="background-color: #ecb309; color: white;">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" style="background-color: #06ce24; color: white;">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Forest Safari</h5>
+            <p class="card-text">Explore the lush greenery and diverse wildlife of the forest.</p>
+        </div>
+    </div>
+    <div class="card mt-3">
+        <div class="card-body">
+            <h5 class="card-title">Ocean Safari</h5>
+            <p class="card-text">Dive into the deep blue and discover the wonders of marine life.</p>
+        </div>
+    </div>
+    <div class="card mt-3">
+        <div class="card-body">
+            <h5 class="card-title">Desert Safari</h5>
+            <p class="card-text">Experience the vastness and unique beauty of the desert landscape.</p>
+        </div>
+    </div>
+    <!-- the body with scrollspy feature -->
+     <nav id="navbar-example2" class="navbar navbar-light bg-light px-3 mt-3">
+        <a class="navbar-brand" href="#">Scrollspy</a>
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link" href="#forest">Forest</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#ocean">Ocean</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#desert">Desert</a>
+            </li>
+        </ul>
+    </nav>
+    <!--section with matching ids-->
+    <div id="Forest" class="section"></div>
+    <div id="Ocean" class="section"></div>
+    <div id="Desert" class="section"></div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
