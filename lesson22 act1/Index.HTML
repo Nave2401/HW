@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Phone Contacts</title>
+    <style>
+        body {
+           background-image:  linear-gradient(to bottom, #2f3639, #525b5e);
+            font-family: Arial, sans-serif;
+        }
+        .page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image:  linear-gradient(to bottom, #2f3639, #525b5e);
+        }
+        .card {
+            padding: 20px;
+            margin: 20px;
+        }
+        h1,p {
+            margin-bottom: 20px;
+            color: #8ecfdf;
+        }
+        </style>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<body>
+<h1 style="text-align: center;" Style="color: #8ecfdf;">My Phone Contacts</h1>
+<p style="text-align: center;" Style="color: #8ecfdf;">A short Paragraph about my contacts</p>
+    <div class="container" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <div class="card" style="max-width: 1000px;background-color: #92b2bd; border-radius: 10px; box-shadow: 0 4px 8px rgba(9, 148, 241, 0.1);">
+            <div class="card-body">
+                <h4 class="card-title" style="color: #000000;">Contact Details</h4>
+                <ul>
+                    <li>Name <br><h3 id="Name"></h3></li>
+                    <li>Phone <br><h3 id="Phone"></h3></li>
+                    <li>School <br><h3 id="School"></h3></li>
+                    <li>City <br><h3 id="City"></h3></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        var contact = {
+            Name: "Kavish Bhardwaj",
+            Phone: "+91 9015141345",
+            School: "ABC High School",
+            City: "New Delhi"
+        };
+        document.getElementById("Name").innerText = contact.Name;
+        document.getElementById("Phone").innerText = contact.Phone;
+        document.getElementById("School").innerText = contact.School;
+        document.getElementById("City").innerText = contact.City;
+    </script>
+</body>
+</html>
