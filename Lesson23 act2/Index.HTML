@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Methods In Arrays</title>
+</head>
+<body>
+    <h2>Methods In Arrays</h2>
+    <h2>Join() & pop()</h2>
+
+    <p>a. Join() method is used to join the elements of an array into a string. It takes an optional separator as an argument, which specifies the string to be used between each element. If no separator is provided, a comma is used by default.<br>
+        b. Pop() method is used to remove the last element from an array and returns that element. It modifies the original array by removing the last element.<br>
+        </p>
+
+        <p id="myjoin"></p>
+        <p id="myfirstpop"></p>
+        <p id="mysecondpop"></p>
+
+        <script>
+            const fruits = ["Apple", "Banana", "Mango", "Orange"];
+            const myJoin = fruits.join(" - ");
+            const myFirstPop = fruits.pop();
+            const mySecondPop = fruits.pop();
+            document.getElementById("myjoin").innerHTML = myJoin;
+            document.getElementById("myfirstpop").innerHTML = myFirstPop;
+            document.getElementById("mysecondpop").innerHTML = mySecondPop;
+        </script>
+</body>
+</html>
