@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Zoo</title>
+    <style>
+        body {
+            margin: 0;
+            background: #efefef;
+            font-family: "Times New Roman", serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 700px;
+            margin-top: 18px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 3.1rem;
+            color: #e6a926;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            margin: 18px 0 28px;
+            font-size: 2.1rem;
+            font-style: italic;
+            color: #5b8d4d;
+            font-weight: 500;
+        }
+
+        .zoo-board {
+            width: 100%;
+            max-width: 610px;
+            margin: 0 auto;
+            background: #96d78d;
+            border: 3px solid #f0b33d;
+            padding: 14px 18px 18px;
+            box-sizing: border-box;
+        }
+
+        .cage {
+            width: 100%;
+            min-height: 68px;
+            margin: 0 0 20px;
+            background: transparent;
+            border: 3px solid #f0b33d;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.1rem;
+            color: #1f1f1f;
+            box-sizing: border-box;
+            font-weight: 700;
+            font-family: "Times New Roman", serif;
+            padding: 10px 20px;
+        }
+
+        .cage:last-child {
+            margin-bottom: 12px;
+        }
+
+        .cage strong {
+            font-weight: 700;
+        }
+            h1 {
+                font-size: 2.3rem;
+            }
+
+            .subtitle {
+                font-size: 1.4rem;
+            }
+
+            .cage {
+                font-size: 1.5rem;
+            }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <h1>MY ZOO</h1>
+        <p class="subtitle">Use JavaScript and the DOM to add animals to each cage....</p>
+        <div id="zooBoard" class="zoo-board"></div>
+    </div>
+    <script>
+        const animals = [
+            'Lion',
+            'Elephant',
+            'Penguin',
+            'Panda'
+        ];
+        const zooBoard = document.getElementById('zooBoard');
+        animals.forEach((animal, index) => {
+            const cage = document.createElement('div');
+            cage.className = 'cage';
+            cage.innerHTML = `<strong>Cage ${index + 1} : ${animal}</strong>`;
+            zooBoard.appendChild(cage);
+        });
+        const total = document.createElement('div');
+        total.className = 'cage';
+        total.innerHTML = `<strong>Animal Total Count: ${animals.length}</strong>`;
+        zooBoard.appendChild(total);
+    </script>
+</body>
+</html>
