@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Planets Cards</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background: linear-gradient(to right, #1e3c72, #7705a4);
+            padding: 20px;
+        }
+
+        .card {
+            margin: 10px;
+            background: linear-gradient(to right, #25b8d8, #0a5af0);
+            width: 400px;
+            height: 200px;
+        }
+
+        h1 {
+            color: rgb(241, 9, 9);
+            text-align: center;
+        }
+
+        p {
+            color: rgb(234, 158, 5);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: rgb(255, 0, 0); text-align: center;">My Planets Cards</h1>
+    <p>Use JavaScript to create interactive planet cards!</p>
+    <div class="container">
+        <button onclick="showPlanets()" class="btn btn-primary">Show Planets</button>
+        <div class="row" id="planet-cards">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title" id="card-title-1"></h2>
+                    <p class="card-text" id="card-text-1"></p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title" id="card-title-2"></h3>
+                    <p class="card-text" id="card-text-2"></p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title" id="card-title-3"></h4>
+                    <p class="card-text" id="card-text-3"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        class Planet {
+            constructor(name, facts) {
+                this.name = name;
+                this.facts = facts;
+            }
+            describe() {
+                return this.name + ": " + this.facts;
+            }
+        }
+
+        function showPlanets() {
+                    let h2 = new Planet("Earth", "Earth is the third planet from the Sun and the only astronomical object known to harbor life.");
+            let h3 = new Planet("Mars", "Mars is the fourth planet from the Sun and is often referred to as the 'Red Planet' due to its reddish appearance.");
+            let h4 = new Planet("Jupiter", "Jupiter is the fifth planet from the Sun and is the largest planet in our solar system, known for its Great Red Spot and many moons.");
+            document.getElementById("card-title-1").innerHTML = h2.name;
+            document.getElementById("card-text-1").innerHTML = h2.describe();
+            document.getElementById("card-title-2").innerHTML = h3.name;
+            document.getElementById("card-text-2").innerHTML = h3.describe();
+            document.getElementById("card-title-3").innerHTML = h4.name;
+            document.getElementById("card-text-3").innerHTML = h4.describe();
+        }
+    </script>
+</body>
+
+</html>
