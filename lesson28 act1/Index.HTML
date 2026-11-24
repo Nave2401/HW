@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Magic Word Lab</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 30px 15px;
+            text-align: center;
+            background: linear-gradient(to right, #4facfe, #8e54e9);
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+
+        .lab {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .card {
+            margin: 20px auto;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-title {
+            color: #5723a8;
+        }
+
+        .btn {
+            margin: 5px;
+        }
+
+        .output {
+            min-height: 58px;
+            margin: 15px auto;
+            padding: 14px;
+            border: 2px solid #ffffff;
+            border-radius: 12px;
+            background-color: rgba(255, 255, 255, 0.18);
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .error-output {
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 2px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <main class="lab">
+        <h1>My Magic Word Lab</h1>
+        <p>Welcome to the Magic Word Lab!</p>
+        <div class="card" id="card1">
+            <div class="card-body">
+                <h5 class="card-title">What Type Is It?</h5>
+                <button class="btn btn-primary" onclick="showType()">Reveal the Types!</button>
+            </div>
+        </div>
+        <div class="card" id="card2">
+            <div class="card-body">
+                <h5 class="card-title">Switch the Type!</h5>
+                <button class="btn btn-primary" onclick="toStr()">Turn to String</button>
+                <button class="btn btn-primary" onclick="toNum()">Turn to Number</button>
+            </div>
+        </div>
+        <div id="srResult" class="output"></div>
+        <div id="snResult" class="output"></div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Test an Error</h5>
+                <button class="btn btn-danger" onclick="createError()">Create Error</button>
+            </div>
+        </div>
+        <div id="errorResult" class="output error-output"></div>
+    </main>
+    <script>
+        var sen = "This is my School";
+
+        function checkType() {
+            return "88 is a " + typeof 88 +
+                "<br>\"" + sen + "\" is a " + typeof sen;
+        }
+
+        function showType() {
+            var result = checkType();
+            document.getElementById("srResult").innerHTML = result;
+        }
+
+        function toStr() {
+            var result = sen.toString();
+            document.getElementById("snResult").innerHTML =
+                "\"" + result + "\" is now a " + typeof result;
+        }
+
+        function toNum() {
+            var result = Number(sen);
+            document.getElementById("snResult").innerHTML =
+                "Number conversion: " + result +
+                "<br>Result type: " + typeof result;
+        }
+
+        function createError() {
+            try {
+                nonExistingFunction();
+            } catch (error) {
+                document.getElementById("errorResult").innerHTML =
+                    "Error caught: " + error.message;
+            }
+        }
+    </script>
+</body>
+</html>
